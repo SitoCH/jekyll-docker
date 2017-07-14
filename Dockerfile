@@ -16,7 +16,7 @@ RUN apk add --no-cache --virtual .build-deps \
 # Clean
     && apk del -f .build-deps 
 
-VOLUME /src
+VOLUME /srv/jekyll
 EXPOSE 4000
 
-WORKDIR /src
+WORKDIR /srv/jekyll
