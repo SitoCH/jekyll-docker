@@ -18,6 +18,6 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk del -f .build-deps 
 
 VOLUME /srv/jekyll
-EXPOSE 4000
+EXPOSE 3000
 
 WORKDIR /srv/jekyll
