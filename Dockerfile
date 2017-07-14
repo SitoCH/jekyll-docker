@@ -8,6 +8,7 @@ RUN apk add --no-cache --virtual .build-deps \
     && apk add --no-cache \
         python \
         imagemagick \
+        imagemagick-dev \
     && gem install \
         jekyll-archives \
         jekyll-paginate-categories \
