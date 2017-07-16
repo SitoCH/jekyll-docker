@@ -10,10 +10,15 @@ RUN apk add --no-cache --virtual .build-deps \
         imagemagick \
         imagemagick-dev \
     && gem install \
+        jekyll \
         jekyll-archives \
         jekyll-paginate-categories \
         rouge \
         pygments.rb \
+        kramdown \
+        rmagick \
+        exifr:1.2.6 \
+        jekyll-minimagick \
 # Clean
     && apk del -f .build-deps 
 
