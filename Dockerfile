@@ -1,15 +1,12 @@
-FROM jekyll/jekyll:builder
-MAINTAINER Simone Grignola
+FROM ruby:alpine
 
 # Install some jekyll plugins
-RUN apk add --no-cache --virtual .build-deps \
-        build-base \
-        ruby-dev \
-    && apk add --no-cache \
-        python \
-        imagemagick \
-        imagemagick-dev \
-    && gem install \
+RUN apk add --update bash build-base libffi-dev ca-certificates rsync imagemagick-dev && \
+    gem install --no-ri --no-rdoc \
+        bundler \
+        mercenary \
+        html-proofer \
+        listen \
         jekyll \
         jekyll-archives \
         jekyll-paginate-categories \
@@ -18,11 +15,13 @@ RUN apk add --no-cache --virtual .build-deps \
         kramdown \
         rmagick \
         exifr:1.2.6 \
-        jekyll-minimagick \
-# Clean
-    && apk del -f .build-deps 
+        jekyll-minimagick && \
+    apk del build-base libffi-dev ruby-dev && \
+    rm -rf /usr/lib/ruby/gems/*/cache/*.gem
 
 VOLUME /srv/jekyll
 EXPOSE 3000
 
 WORKDIR /srv/jekyll
+
+ENTRYPOINT ["jekyll"]
